@@ -11,6 +11,8 @@
       "backText": { "type": "string", "default": "" },
       "frontImage": { "type": "string", "default": "" },
       "frontBgColor": { "type": "string", "default": "#333333" },
+      "frontImageSize": { "type": "string", "default": "auto" },
+      "frontImageAlign": { "type": "string", "default": "middle" },
       "backBgColor": { "type": "string", "default": "#D3A693" },
       "btnBgColor": { "type": "string", "default": "#9B1616" },
       "btnHoverBgColor": { "type": "string", "default": "#E83535" }
