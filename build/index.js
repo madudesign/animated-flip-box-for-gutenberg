@@ -184,16 +184,15 @@
                 value: frontImageSize,
                 onChange: (val) => setAttributes({ frontImageSize: val })
               }),
-              el(SelectControl, {
-                label: "Alignement vertical de l'image",
-                value: frontImageAlign,
-                options: [
-                  { label: "Haut", value: "top" },
-                  { label: "Milieu", value: "middle" },
-                  { label: "Bas", value: "bottom" }
-                ],
-                onChange: (val) => setAttributes({ frontImageAlign: val })
-              })
+el(SelectControl, {
+    label: "Alignement vertical de l'image",
+    value: frontImageAlign,
+    options: [
+      { label: "Haut", value: "top" },
+      { label: "Bas", value: "bottom" }
+    ],
+    onChange: (val) => setAttributes({ frontImageAlign: val })
+})
             ),
 
             !frontImage && el('div', {},

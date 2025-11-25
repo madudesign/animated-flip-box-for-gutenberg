@@ -7,7 +7,7 @@ The Animated Flip Box Gutenberg Block is a customizable WordPress block that all
 ## Features
 
 - Front and back content with titles and text.
-- Front image with customizable size and vertical alignment (top, middle, bottom).
+- Front image with customizable size and vertical alignment (top, bottom).
 - Background color options for front and back sides.
 - Button with customizable text and colors.
 - Image display modes: cover (full background) or picto (transparent background).
@@ -26,7 +26,7 @@ The Animated Flip Box Gutenberg Block is a customizable WordPress block that all
 - Customize the front and back titles and text.
 - Upload a front image and choose its display mode.
 - Adjust the front image size (e.g., 100px, 50%, auto).
-- Set the vertical alignment of the front image (top, middle, bottom).
+- Set the vertical alignment of the front image (top, bottom).
 - Choose background colors for front and back sides.
 - Add button text and customize button colors.
 - Set the vertical alignment of the front content.
@@ -44,7 +44,8 @@ The Animated Flip Box Gutenberg Block is a customizable WordPress block that all
 ### Version 1.0.0
 
 - Initial release with customizable front and back content.
-- Added front image size and vertical alignment options.
+- Added front image size and vertical alignment options (top, bottom).
+- Removed "middle" vertical alignment option due to implementation issues.
 - Fixed block validation issues related to style attributes.
 
 ## Support
