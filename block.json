@@ -1,0 +1,18 @@
+{
+    "apiVersion": 2,
+    "name": "custom/animated-flip-box",
+    "title": "Animated Flip Box",
+    "category": "design",
+    "icon": "cover-image",
+    "editorScript": "afbg-block",
+    "style": "afbg-style",
+    "attributes": {
+      "cardTitle": { "type": "string", "default": "" },
+      "backText": { "type": "string", "default": "" },
+      "frontImage": { "type": "string", "default": "" },
+      "frontBgColor": { "type": "string", "default": "#333333" },
+      "backBgColor": { "type": "string", "default": "#D3A693" },
+      "btnBgColor": { "type": "string", "default": "#9B1616" },
+      "btnHoverBgColor": { "type": "string", "default": "#E83535" }
+    }
+}
