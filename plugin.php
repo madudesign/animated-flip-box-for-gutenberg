@@ -26,7 +26,12 @@ function afbg_register_block() {
 
     // Enregistrement du bloc principal (sans block.json)
     register_block_type('custom/oasis-flipbox', array(
-        'editor_script' => 'afbg-block'
+        'editor_script' => 'afbg-block',
+        'style' => 'afbg-style',
+        'supports' => array(
+            'html' => false,
+            'widgets' => true
+        )
     ));
 }
 add_action('init', 'afbg_register_block');

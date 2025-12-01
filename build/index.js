@@ -33,20 +33,25 @@
       src: 'cover-image'
     },
     category: 'design',
-    attributes: {
-      frontTitle: { type: 'string', default: '' },
-      backTitle: { type: 'string', default: '' },
-      backText: { type: 'string', default: '' },
-      frontImage: { type: 'string', default: '' },
-      frontBgColor: { type: 'string', default: '#333333' },
-      frontImageSize: { type: 'string', default: 'auto' },
-      frontImageAlign: { type: 'string', default: 'middle' },
-      linkUrl: { type: 'string', default: '' },
-      buttonText: { type: 'string', default: '' },
-      verticalAlign: { type: 'string', default: 'middle' },
-      backBgColor: { type: 'string', default: '#D3A693' },
-      frontImageMode: { type: 'string', default: 'cover' }
-    },
+attributes: {
+  frontTitle: { type: 'string', default: '' },
+  backTitle: { type: 'string', default: '' },
+  backText: { type: 'string', default: '' },
+  frontImage: { type: 'string', default: '' },
+  frontBgColor: { type: 'string', default: '#333333' },
+  frontImageSize: { type: 'string', default: 'auto' },
+  frontImageAlign: { type: 'string', default: 'middle' },
+  backImage: { type: 'string', default: '' },
+  backBgColor: { type: 'string', default: '#D3A693' },
+  backImageSize: { type: 'string', default: 'auto' },
+  backImageAlign: { type: 'string', default: 'middle' },
+  linkUrl: { type: 'string', default: '' },
+  buttonText: { type: 'string', default: '' },
+  verticalAlign: { type: 'string', default: 'middle' },
+  frontImageMode: { type: 'string', default: 'cover' },
+  backImageMode: { type: 'string', default: 'cover' }
+},
+
 
     edit: function (props) {
       const {
