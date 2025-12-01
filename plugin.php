@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Oasis Flipbox
  * Description: Bloc Gutenberg de type flipbox avec texte, image et bouton éditables.
- * Version: 3.7.1
+ * Version: 3.7.2
  * Author: Madu
  */
 
