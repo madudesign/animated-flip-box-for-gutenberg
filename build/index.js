@@ -33,25 +33,25 @@
       src: 'cover-image'
     },
     category: 'design',
-attributes: {
-  frontTitle: { type: 'string', default: '' },
-  backTitle: { type: 'string', default: '' },
-  backText: { type: 'string', default: '' },
-  frontImage: { type: 'string', default: '' },
-  frontBgColor: { type: 'string', default: '#333333' },
-  frontImageSize: { type: 'string', default: 'auto' },
-  frontImageAlign: { type: 'string', default: 'middle' },
-  backImage: { type: 'string', default: '' },
-  backBgColor: { type: 'string', default: '#D3A693' },
-  backImageSize: { type: 'string', default: 'auto' },
-  backImageAlign: { type: 'string', default: 'middle' },
-  linkUrl: { type: 'string', default: '' },
-  buttonText: { type: 'string', default: '' },
-  verticalAlign: { type: 'string', default: 'middle' },
-  frontImageMode: { type: 'string', default: 'cover' },
-  backImageMode: { type: 'string', default: 'cover' }
-},
-
+    attributes: {
+      frontTitle: { type: 'string', default: '' },
+      backTitle: { type: 'string', default: '' },
+      backText: { type: 'string', default: '' },
+      frontImage: { type: 'string', default: '' },
+      frontBgColor: { type: 'string', default: '#333333' },
+      frontImageSize: { type: 'string', default: 'auto' },
+      frontImageAlign: { type: 'string', default: 'top' },
+      cardHeight: { type: 'string', default: '400px' },
+      backImage: { type: 'string', default: '' },
+      backBgColor: { type: 'string', default: '#D3A693' },
+      backImageSize: { type: 'string', default: 'auto' },
+      backImageAlign: { type: 'string', default: 'top' },
+      linkUrl: { type: 'string', default: '' },
+      buttonText: { type: 'string', default: '' },
+      verticalAlign: { type: 'string', default: 'middle' },
+      frontImageMode: { type: 'string', default: 'cover' },
+      backImageMode: { type: 'string', default: 'cover' }
+    },
 
     edit: function (props) {
       const {
@@ -63,6 +63,7 @@ attributes: {
           frontBgColor,
           frontImageSize,
           frontImageAlign,
+          cardHeight,
           linkUrl,
           buttonText,
           verticalAlign,
@@ -82,7 +83,10 @@ attributes: {
         className: 'flip-card wp-block-custom-oasis-flipbox' + (hasHoverSync ? ' has-hover-sync' : ''),
         style: { width: '100%' }
       },
-        el('div', { className: 'flip-card-inner' },
+        el('div', {
+          className: 'flip-card-inner',
+          style: { height: cardHeight || '400px' }
+        },
 
           el('div', {
             className:
@@ -218,6 +222,17 @@ attributes: {
                   { label: "Bas", value: "bottom" }
                 ],
                 onChange: (val) => setAttributes({ frontImageAlign: val })
+              }),
+              el(ColorPicker, {
+                color: frontBgColor,
+                onChangeComplete: (value) => setAttributes({ frontBgColor: value.hex }),
+                disableAlpha: true,
+                label: 'Couleur de fond du recto'
+              }),
+              el(TextControl, {
+                label: 'Hauteur de la carte (ex: 400px, 50vh)',
+                value: cardHeight,
+                onChange: (val) => setAttributes({ cardHeight: val || '400px' })
               })
             ),
 
@@ -259,15 +274,6 @@ attributes: {
               })
             ),
 
-            !frontImage && el('div', {},
-              el('label', { style: { display: 'block', marginBottom: '8px', fontWeight: 'bold' } }, 'Couleur de fond (recto sans image)'),
-              el(ColorPicker, {
-                color: frontBgColor,
-                onChangeComplete: (value) => setAttributes({ frontBgColor: value.hex }),
-                disableAlpha: true
-              })
-            ),
-
             el(TextControl, {
               label: 'Lien de la carte',
               value: linkUrl,
@@ -306,7 +312,8 @@ attributes: {
         backImage,
         backImageMode,
         backImageSize,
-        backImageAlign
+        backImageAlign,
+        cardHeight
       } = props.attributes;
 
       const hasHoverSync = linkUrl && buttonText;
@@ -319,7 +326,10 @@ attributes: {
         className: 'flip-card wp-block-custom-oasis-flipbox' + (hasHoverSync ? ' has-hover-sync' : ''),
         style: { width: '100%' }
       },
-        el('div', { className: 'flip-card-inner' },
+        el('div', {
+          className: 'flip-card-inner',
+          style: { height: cardHeight || '400px' }
+        },
 
           el('div', {
             className:
@@ -388,6 +398,6 @@ attributes: {
           style: { textDecoration: 'none', color: 'inherit', display: 'block' }
         }, card)
         : card;
-      }
+    }
   });
 })(window.wp.blocks, window.wp.blockEditor, window.wp.components, window.wp.element);

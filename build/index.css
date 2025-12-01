@@ -38,10 +38,22 @@
   flex-direction: column;
   align-items: center;
   text-align: center;
-  box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+  box-shadow:
+    rgba(50, 50, 93, 0.25) 0px 13px 27px -5px,
+    rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
 }
 
+/* Image de fond recto = plein cadre */
 .flip-card-front {
+  background-size: cover;
+  background-position: center;
+}
+
+/* Image de fond verso = plein cadre (quand une image est définie) */
+.flip-card-back {
+  transform: rotateY(180deg);
+  background-color: #D3A693;
+  justify-content: space-evenly;
   background-size: cover;
   background-position: center;
 }
@@ -52,8 +64,10 @@
   background-size: contain;
   background-repeat: no-repeat;
   background-position: bottom center;
+  padding-bottom: 3rem; /* réserve un peu d’espace pour le picto */
 }
 
+/* Alignement vertical du contenu sur le recto */
 .flip-card-front.align-top {
   justify-content: flex-start;
 }
@@ -62,12 +76,6 @@
 }
 .flip-card-front.align-bottom {
   justify-content: flex-end;
-}
-
-.flip-card-back {
-  transform: rotateY(180deg);
-  background-color: #D3A693;
-  justify-content: space-evenly;
 }
 
 .flip-card h3,
@@ -85,40 +93,40 @@
   margin: 10px 0;
 }
 
-
-/* Activer flip au tap mobile */
+/* Activer flip au tap mobile (classe ajoutée via JS) */
 .flip-card.afbg-flipped .flip-card-inner {
-    transform: rotateY(180deg);
-  }
-  
-  /* Style verso renforcé */
-  .flip-card-back p {
-    font-size: 14px !important;
-    font-weight: bold;
-  }
-  
-  /* Style spécifique page */
-  #contenuPage h3.flip-title {
-    font-size: 29px;
-    font-weight: bold;
-  }
-  .wp-block-custom-oasis-flipbox {
-    width: 100%;
+  transform: rotateY(180deg);
+}
+
+/* Style verso renforcé */
+.flip-card-back p {
+  font-size: 14px !important;
+  font-weight: bold;
+}
+
+/* Style spécifique page */
+#contenuPage h3.flip-title {
+  font-size: 29px;
+  font-weight: bold;
+}
+
+.wp-block-custom-oasis-flipbox {
+  width: 100%;
+  max-width: 100%;
+  display: block;
+  margin: 0 auto;
+}
+
+.wp-block[data-type="custom/oasis-flipbox"] {
+  width: 100%;
+}
+
+@media (min-width: 768px) {
+  .flip-card {
     max-width: 100%;
-    display: block;
-    margin: 0 auto;
   }
-  
-  .wp-block[data-type="custom/oasis-flipbox"] {
-    width: 100%;
-  }
-  
-  @media (min-width: 768px) {
-    .flip-card {
-      max-width: 100%;
-    }
-  }
-  
+}
+
 /* === Style du faux bouton === */
 .fake-button {
   background-color: #9B1616;
@@ -143,21 +151,20 @@ a.flip-card-link-wrapper {
   color: inherit !important;
   text-decoration: none !important;
 }
+
 /* only on mobile */
 @media only screen and (max-width: 767px) {
-      .flip-card-inner {
-      width: 90%;
-      height: 50vh;
-      background-repeat: repeat-x;
-    }
-    .flip-card-front {
-      background-size: 84%;
-      background-position: center;
-    }
-    /* Variante mobile pour le mode pictogramme */
-    .flip-card-front.image-mode-picto,
-    .flip-card-back.image-mode-picto-back {
-      background-size: 60%;
-      background-position: bottom center;
-    }
+  .flip-card-inner {
+    width: 90%;
+    height: 50vh;
+    background-repeat: repeat-x;
+  }
+
+  /* Variante mobile pour le mode pictogramme uniquement */
+  .flip-card-front.image-mode-picto,
+  .flip-card-back.image-mode-picto-back {
+    background-size: 60%;
+    background-position: bottom center;
+    padding-bottom: 2.4rem;
+  }
 }

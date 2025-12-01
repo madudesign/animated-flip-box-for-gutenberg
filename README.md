@@ -1,57 +1,28 @@
-# Animated Flip Box Gutenberg Block
+# Animated Flip Box Gutenberg Plugin
 
-## Overview
+## Version 3.8
 
-The Animated Flip Box Gutenberg Block is a customizable WordPress block that allows users to create animated flip boxes with front (recto) and back (verso) sides. Users can add titles, text, images, and customize colors and layout options.
+### Features Added
 
-## Features
+- Front background color picker is now always visible in the block inspector, even when a front image is set.
+- Added a new block attribute `cardHeight` to control the height of the flip card.
+- The height of the flip card (`.flip-card-inner`) is now adjustable via a new TextControl in the block inspector.
+- The height setting affects both the editor and front-end rendering.
+- Default height remains 400px for backward compatibility.
+- The block slug remains `custom/oasis-flipbox` and existing block behavior is preserved.
 
-- Front and back content with titles and text.
-- Front image with customizable size and vertical alignment (top, bottom).
-- Background color options for front and back sides.
-- Button with customizable text and colors.
-- Image display modes: cover (full background) or picto (transparent background).
-- Link URL for the entire flip box.
-- Vertical alignment options for front content.
+### Usage
 
-## Installation
+- Use the "Couleur de fond du recto" color picker to set the front background color regardless of front image presence.
+- Use the "Hauteur de la carte (ex: 400px, 50vh)" text input in the inspector to set the card height with any valid CSS height value (e.g., px, %, vh).
 
-1. Upload the plugin folder to the `/wp-content/plugins/` directory.
-2. Activate the plugin through the 'Plugins' menu in WordPress.
-3. Use the "Animated Flip Box" block in the Gutenberg editor.
+### Testing
 
-## Usage
+- Verify the front background color picker is always visible.
+- Adjust the card height and confirm the flip card height changes in the editor and on the front-end.
+- Confirm existing blocks without the new attribute retain the default height of 400px.
 
-- Add the "Animated Flip Box" block to your post or page.
-- Customize the front and back titles and text.
-- Upload a front image and choose its display mode.
-- Adjust the front image size (e.g., 100px, 50%, auto).
-- Set the vertical alignment of the front image (top, bottom).
-- Choose background colors for front and back sides.
-- Add button text and customize button colors.
-- Set the vertical alignment of the front content.
+### Notes
 
-## Development
-
-- The block is registered in `build/index.js`.
-- Attributes and settings are defined in `block.json`.
-- Styles are applied inline with support for dynamic customization.
-- Image size normalization ensures valid CSS values.
-- Vertical alignment uses CSS background-position and conditional classes.
-
-## Changelog
-
-### Version 1.0.0
-
-- Initial release with customizable front and back content.
-- Added front image size and vertical alignment options (top, bottom).
-- Removed "middle" vertical alignment option due to implementation issues.
-- Fixed block validation issues related to style attributes.
-
-## Support
-
-For issues or feature requests, please open an issue on the plugin's GitHub repository.
-
-## License
-
-This plugin is licensed under the GPLv2 or later.
+- No changes to CSS files were made; inline styles override the fixed height.
+- The plugin remains compatible with existing content and block instances.
