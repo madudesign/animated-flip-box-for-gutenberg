@@ -67,7 +67,11 @@ attributes: {
           buttonText,
           verticalAlign,
           backBgColor,
-          frontImageMode
+          frontImageMode,
+          backImage,
+          backImageMode,
+          backImageSize,
+          backImageAlign
         },
         setAttributes
       } = props;
@@ -100,8 +104,25 @@ attributes: {
           ),
 
           el('div', {
-            className: 'flip-card-back',
-            style: { backgroundColor: backBgColor }
+            className:
+              'flip-card-back' +
+              (backImageMode === 'picto' ? ' image-mode-picto-back' : ''),
+            style: backImage
+              ? backImageMode === 'picto'
+                ? {
+                    backgroundImage: `url(${backImage})`,
+                    backgroundColor: backBgColor,
+                    backgroundSize: 'contain',
+                    backgroundRepeat: 'no-repeat',
+                    backgroundPosition: 'bottom center',
+                  }
+                : {
+                    backgroundImage: `url(${backImage})`,
+                    backgroundColor: backBgColor,
+                    backgroundSize: normalizeSize(backImageSize),
+                    backgroundPosition: `center ${backImageAlign || 'middle'}`,
+                  }
+              : { backgroundColor: backBgColor },
           },
             el('h3', {
               className: 'flip-title',
@@ -189,15 +210,53 @@ attributes: {
                 value: frontImageSize,
                 onChange: (val) => setAttributes({ frontImageSize: val })
               }),
-el(SelectControl, {
-    label: "Alignement vertical de l'image",
-    value: frontImageAlign,
-    options: [
-      { label: "Haut", value: "top" },
-      { label: "Bas", value: "bottom" }
-    ],
-    onChange: (val) => setAttributes({ frontImageAlign: val })
-})
+              el(SelectControl, {
+                label: "Alignement vertical de l'image",
+                value: frontImageAlign,
+                options: [
+                  { label: "Haut", value: "top" },
+                  { label: "Bas", value: "bottom" }
+                ],
+                onChange: (val) => setAttributes({ frontImageAlign: val })
+              })
+            ),
+
+            el(PanelBody, { title: "Image verso", initialOpen: false },
+              el(MediaUpload, {
+                onSelect: (media) => setAttributes({ backImage: media.url }),
+                type: 'image',
+                render: ({ open }) => el(Button, { onClick: open, isSecondary: true },
+                  backImage ? "Changer l'image" : "Ajouter une image"
+                )
+              }),
+              backImage && el(Button, {
+                isDestructive: true,
+                style: { marginTop: '10px' },
+                onClick: () => setAttributes({ backImage: '' })
+              }, "Supprimer l'image"),
+              el(SelectControl, {
+                label: "Mode d'affichage de l'image",
+                value: backImageMode,
+                options: [
+                  { label: "Image de fond (plein cadre)", value: "cover" },
+                  { label: "Pictogramme (fond transparent)", value: "picto" }
+                ],
+                onChange: (val) => setAttributes({ backImageMode: val })
+              }),
+              el(TextControl, {
+                label: "Taille de l'image (ex: 100px, 50%, auto)",
+                value: backImageSize,
+                onChange: (val) => setAttributes({ backImageSize: val })
+              }),
+              el(SelectControl, {
+                label: "Alignement vertical de l'image",
+                value: backImageAlign,
+                options: [
+                  { label: "Haut", value: "top" },
+                  { label: "Bas", value: "bottom" }
+                ],
+                onChange: (val) => setAttributes({ backImageAlign: val })
+              })
             ),
 
             !frontImage && el('div', {},
@@ -243,7 +302,11 @@ el(SelectControl, {
         buttonText,
         verticalAlign,
         backBgColor,
-        frontImageMode
+        frontImageMode,
+        backImage,
+        backImageMode,
+        backImageSize,
+        backImageAlign
       } = props.attributes;
 
       const hasHoverSync = linkUrl && buttonText;
@@ -278,8 +341,25 @@ el(SelectControl, {
           ),
 
           el('div', {
-            className: 'flip-card-back',
-            style: { backgroundColor: backBgColor }
+            className:
+              'flip-card-back' +
+              (backImageMode === 'picto' ? ' image-mode-picto-back' : ''),
+            style: backImage
+              ? backImageMode === 'picto'
+                ? {
+                    backgroundImage: `url(${backImage})`,
+                    backgroundColor: backBgColor,
+                    backgroundSize: 'contain',
+                    backgroundRepeat: 'no-repeat',
+                    backgroundPosition: 'bottom center',
+                  }
+                : {
+                    backgroundImage: `url(${backImage})`,
+                    backgroundColor: backBgColor,
+                    backgroundSize: normalizeSize(backImageSize),
+                    backgroundPosition: `center ${backImageAlign || 'middle'}`,
+                  }
+              : { backgroundColor: backBgColor },
           },
             el('h3', {
               className: 'flip-title',
@@ -308,6 +388,6 @@ el(SelectControl, {
           style: { textDecoration: 'none', color: 'inherit', display: 'block' }
         }, card)
         : card;
-    }
+      }
   });
 })(window.wp.blocks, window.wp.blockEditor, window.wp.components, window.wp.element);

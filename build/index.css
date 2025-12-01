@@ -47,7 +47,8 @@
 }
 
 /* Mode pictogramme : image plus petite, calée en bas, fond visible */
-.flip-card-front.image-mode-picto {
+.flip-card-front.image-mode-picto,
+.flip-card-back.image-mode-picto-back {
   background-size: contain;
   background-repeat: no-repeat;
   background-position: bottom center;
@@ -154,7 +155,8 @@ a.flip-card-link-wrapper {
       background-position: center;
     }
     /* Variante mobile pour le mode pictogramme */
-    .flip-card-front.image-mode-picto {
+    .flip-card-front.image-mode-picto,
+    .flip-card-back.image-mode-picto-back {
       background-size: 60%;
       background-position: bottom center;
     }
