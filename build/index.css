@@ -4,7 +4,7 @@
   font-family: 'Comfortaa', cursive;
   perspective: 1000px;
   width: 100%;
-  max-width: 400px;
+  max-width: 100%;
   margin: auto;
 }
 
@@ -157,7 +157,7 @@ a.flip-card-link-wrapper {
   .flip-card-inner {
     width: 90%;
     height: 50vh;
-    background-repeat: repeat-x;
+    background-repeat: no-repeat;
   }
 
   /* Variante mobile pour le mode pictogramme uniquement */

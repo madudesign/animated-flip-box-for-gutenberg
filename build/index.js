@@ -42,6 +42,7 @@
       frontImageSize: { type: 'string', default: 'auto' },
       frontImageAlign: { type: 'string', default: 'top' },
       cardHeight: { type: 'string', default: '400px' },
+      cardWidth: { type: 'string', default: '400px' },
       backImage: { type: 'string', default: '' },
       backBgColor: { type: 'string', default: '#D3A693' },
       backImageSize: { type: 'string', default: 'auto' },
@@ -64,6 +65,7 @@
           frontImageSize,
           frontImageAlign,
           cardHeight,
+          cardWidth,
           linkUrl,
           buttonText,
           verticalAlign,
@@ -81,7 +83,7 @@
 
       const card = el('div', {
         className: 'flip-card wp-block-custom-oasis-flipbox' + (hasHoverSync ? ' has-hover-sync' : ''),
-        style: { width: '100%' }
+        style: { width: '100%', maxWidth: cardWidth || '400px' }
       },
         el('div', {
           className: 'flip-card-inner',
@@ -187,54 +189,59 @@
               onChange: (val) => setAttributes({ verticalAlign: val })
             }),
 
-            el(PanelBody, { title: "Image recto", initialOpen: true },
-              el(MediaUpload, {
-                onSelect: (media) => setAttributes({ frontImage: media.url }),
-                type: 'image',
-                render: ({ open }) => el(Button, { onClick: open, isSecondary: true },
-                  frontImage ? "Changer l'image" : "Ajouter une image"
-                )
-              }),
-              frontImage && el(Button, {
-                isDestructive: true,
-                style: { marginTop: '10px' },
-                onClick: () => setAttributes({ frontImage: '' })
-              }, "Supprimer l'image"),
-              el(SelectControl, {
-                label: "Mode d'affichage de l'image",
-                value: frontImageMode,
-                options: [
-                  { label: "Image de fond (plein cadre)", value: "cover" },
-                  { label: "Pictogramme (fond transparent)", value: "picto" }
-                ],
-                onChange: (val) => setAttributes({ frontImageMode: val })
-              }),
-              el(TextControl, {
-                label: "Taille de l'image (ex: 100px, 50%, auto)",
-                value: frontImageSize,
-                onChange: (val) => setAttributes({ frontImageSize: val })
-              }),
-              el(SelectControl, {
-                label: "Alignement vertical de l'image",
-                value: frontImageAlign,
-                options: [
-                  { label: "Haut", value: "top" },
-                  { label: "Bas", value: "bottom" }
-                ],
-                onChange: (val) => setAttributes({ frontImageAlign: val })
-              }),
-              el(ColorPicker, {
-                color: frontBgColor,
-                onChangeComplete: (value) => setAttributes({ frontBgColor: value.hex }),
-                disableAlpha: true,
-                label: 'Couleur de fond du recto'
-              }),
-              el(TextControl, {
-                label: 'Hauteur de la carte (ex: 400px, 50vh)',
-                value: cardHeight,
-                onChange: (val) => setAttributes({ cardHeight: val || '400px' })
-              })
-            ),
+      el(PanelBody, { title: "Image recto", initialOpen: true },
+        el(MediaUpload, {
+          onSelect: (media) => setAttributes({ frontImage: media.url }),
+          type: 'image',
+          render: ({ open }) => el(Button, { onClick: open, isSecondary: true },
+            frontImage ? "Changer l'image" : "Ajouter une image"
+          )
+        }),
+        frontImage && el(Button, {
+          isDestructive: true,
+          style: { marginTop: '10px' },
+          onClick: () => setAttributes({ frontImage: '' })
+        }, "Supprimer l'image"),
+        el(SelectControl, {
+          label: "Mode d'affichage de l'image",
+          value: frontImageMode,
+          options: [
+            { label: "Image de fond (plein cadre)", value: "cover" },
+            { label: "Pictogramme (fond transparent)", value: "picto" }
+          ],
+          onChange: (val) => setAttributes({ frontImageMode: val })
+        }),
+        el(TextControl, {
+          label: "Taille de l'image (ex: 100px, 50%, auto)",
+          value: frontImageSize,
+          onChange: (val) => setAttributes({ frontImageSize: val })
+        }),
+        el(SelectControl, {
+          label: "Alignement vertical de l'image",
+          value: frontImageAlign,
+          options: [
+            { label: "Haut", value: "top" },
+            { label: "Bas", value: "bottom" }
+          ],
+          onChange: (val) => setAttributes({ frontImageAlign: val })
+        }),
+        el(ColorPicker, {
+          color: frontBgColor,
+          onChangeComplete: (value) => setAttributes({ frontBgColor: value.hex }),
+          disableAlpha: true,
+          label: 'Couleur de fond du recto'
+        }),
+        el(TextControl, {
+          label: 'Hauteur de la carte (ex: 400px, 50vh)',
+          value: cardHeight,
+          onChange: (val) => setAttributes({ cardHeight: val || '400px' })
+        }),
+        el(TextControl, {
+          label: 'Largeur max de la carte (ex: 400px, 100%, 50%)',
+          value: cardWidth,
+          onChange: (val) => setAttributes({ cardWidth: val || '400px' })
+        })
+      ),
 
             el(PanelBody, { title: "Image verso", initialOpen: false },
               el(MediaUpload, {
@@ -304,6 +311,7 @@
         frontBgColor,
         frontImageSize,
         frontImageAlign = 'middle',
+        cardWidth,
         linkUrl,
         buttonText,
         verticalAlign,
@@ -324,7 +332,7 @@
 
       const card = el('div', {
         className: 'flip-card wp-block-custom-oasis-flipbox' + (hasHoverSync ? ' has-hover-sync' : ''),
-        style: { width: '100%' }
+        style: { width: '100%', maxWidth: cardWidth || '400px' }
       },
         el('div', {
           className: 'flip-card-inner',

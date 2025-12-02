@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Oasis Flipbox
  * Description: Bloc Gutenberg de type flipbox avec texte, image et bouton éditables.
- * Version: 3.8.0
+ * Version: 3.8.1
  * Author: Madu
  */
 
@@ -19,7 +19,7 @@ function afbg_register_block() {
     wp_register_script(
         'afbg-block',
         plugin_dir_url(__FILE__) . 'build/index.js',
-        array('wp-blocks', 'wp-editor', 'wp-element', 'wp-components', 'wp-i18n'),
+        array('wp-blocks', 'wp-block-editor', 'wp-element', 'wp-components', 'wp-i18n'),
         filemtime(plugin_dir_path(__FILE__) . 'build/index.js'),
         true
     );
